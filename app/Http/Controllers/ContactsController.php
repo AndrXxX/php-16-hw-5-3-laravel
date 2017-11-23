@@ -97,10 +97,10 @@ class ContactsController extends Controller
      */
     protected function find($request)
     {
-        $f_last_name = empty($request['f_last_name']) ? '%' : $request['f_last_name']; // Фамилия
-        $f_first_name = empty($request['f_first_name']) ? '%' : $request['f_first_name']; // Имя
-        $f_patronymic_name = empty($request['f_patronymic_name']) ? '%' : $request['f_patronymic_name']; // Отчество
-        $f_phone_number = empty($request['f_phone_number']) ? '%' : substr($request['f_phone_number'], 0, 11);
+        $f_last_name = !isset($request['f_last_name']) ? '%' : $request['f_last_name']; // Фамилия
+        $f_first_name = !isset($request['f_first_name']) ? '%' : $request['f_first_name']; // Имя
+        $f_patronymic_name = !isset($request['f_patronymic_name']) ? '%' : $request['f_patronymic_name']; // Отчество
+        $f_phone_number = !isset($request['f_phone_number']) ? '%' : substr($request['f_phone_number'], 0, 11);
 
         $searchResult = Contact::where('last_name', 'like', '%' . $f_last_name . '%')
             ->where('first_name', 'like', '%' . $f_first_name . '%')
