@@ -11,8 +11,10 @@
 |
 */
 
+Route::get('/', function () {
+    return redirect()->route('contacts');
+});
+Route::get('contacts', 'ContactsController@index')->name('contacts');
 Route::get('contacts/{id}/delete', 'ContactsController@delete')->name('deleteContact');
 Route::get('contacts/{id}/edit', 'ContactsController@edit')->name('editContact');
-Route::get('/', 'ContactsController@index')->name('contacts');
-
-Route::resource('contacts', 'ContactsController');
+Route::resource('contacts', 'ContactsController', ['except' => ['index', 'create', 'update', 'destroy']]);

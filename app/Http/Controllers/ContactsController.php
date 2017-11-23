@@ -146,7 +146,8 @@ class ContactsController extends Controller
     /**
      * Удаляет контакт
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function delete(Request $request, $id)
     {

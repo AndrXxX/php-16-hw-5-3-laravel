@@ -8,7 +8,7 @@
     @if (!empty($operationResult))
       <p>{{ $operationResult }}</p>
     @endif
-
+    <h3><a href='{{ route('contacts') }}'>Показать весь список</a></h3>
     <form action="/contacts" method="POST">
       {{ csrf_field() }}
 
@@ -82,4 +82,5 @@
 
       </table>
     </form>
+  </div>
 @endsection
