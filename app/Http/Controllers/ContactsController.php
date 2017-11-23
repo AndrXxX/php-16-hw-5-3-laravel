@@ -148,9 +148,8 @@ class ContactsController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy(Request $request, $id)
+    public function delete(Request $request, $id)
     {
-        //$result = Contact::destroy([$request['id']]);
         $result = Contact::destroy([$id]);
         return view($this->view, array(
             'operationResult' => $result > 0 ? 'Контакт удален' : 'Контакт не был удален',
