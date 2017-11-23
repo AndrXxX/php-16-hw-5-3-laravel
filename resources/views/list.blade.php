@@ -9,7 +9,7 @@
       <p>{{ $operationResult }}</p>
     @endif
 
-    <form action="/" method="POST">
+    <form action="/contacts" method="POST">
       {{ csrf_field() }}
 
       <table>
@@ -26,16 +26,15 @@
 
         <tr>
           <td></td>
-          <td><input type="text" name="last_name" value=""></td>
-          <td><input type="text" name="first_name" value=""></td>
-          <td><input type="text" name="patronymic_name" value=""></td>
-          <td><input type="tel" name="phone_number" value=""></td>
-          <td></td>
-          <td></td>
-          <td>
-            <input type="hidden" name="tableName" value="">
-            <input type="submit" name="find" value="Найти">
+          <td><input type="text" name="f_last_name" value="{{ $f_last_name or '' }}" placeholder="Фамилия"></td>
+          <td><input type="text" name="f_first_name" value="{{ $f_first_name or '' }}" placeholder="Имя"></td>
+          <td><input type="text" name="f_patronymic_name" value="{{ $f_patronymic_name or '' }}" placeholder="Отчество">
           </td>
+          <td><input type="tel" name="f_phone_number" value="{{ $f_phone_number or '' }}" placeholder="74950000000">
+          </td>
+          <td></td>
+          <td></td>
+          <td><input type="submit" name="find" value="Найти"></td>
         </tr>
 
         @foreach ($contacts as $contact)
@@ -61,8 +60,8 @@
               <td>{{ $contact->created_at }}</td>
               <td>{{ $contact->updated_at }}</td>
               <td>
-                <a href='/edit/{{ $contact->id }}'>Изменить</a>
-                <a href='/delete/{{ $contact->id }}'>Удалить</a>
+                <a href='{{ route('editContact', ['id' => $contact->id]) }}'>Изменить</a>
+                <a href='{{ route('deleteContact', ['id' => $contact->id]) }}'>Удалить</a>
               </td>
             @endif
           </tr>
@@ -77,9 +76,7 @@
             <td><input type="tel" name="phone_number" value="" placeholder="74950000000"></td>
             <td></td>
             <td></td>
-            <td>
-              <input type="submit" name="add" value="Добавить контакт"/>
-            </td>
+            <td><input type="submit" name="add" value="Добавить контакт"/></td>
           </tr>
         @endif
 

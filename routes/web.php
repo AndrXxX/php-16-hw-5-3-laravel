@@ -11,13 +11,8 @@
 |
 */
 
-/*Route::get('/', function () {
-    return view('list');
-});
-*/
+Route::get('contacts/{id}/destroy', 'ContactsController@delete')->name('deleteContact');
+Route::get('contacts/{id}/edit', 'ContactsController@edit')->name('editContact');
+Route::get('/', 'ContactsController@index')->name('contacts');
 
-Route::pattern('id', '[0-9]+');
-Route::get('delete/{id}', 'ContactsController@delete');
-Route::get('edit/{id}', 'ContactsController@showEdit');
-Route::get('list/', 'ContactsController@list');
-Route::resource('/', 'ContactsController', ['only' => ['index', 'store', 'show']]);
+Route::resource('contacts', 'ContactsController');
