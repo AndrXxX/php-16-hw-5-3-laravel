@@ -17,6 +17,7 @@
         <th>Действия</th>
       </tr>
     </table>
+
     <form action="{{ route('contacts.index') }}" method="POST">
       {{ csrf_field() }}
       <table>
@@ -33,37 +34,35 @@
           </td>
           <td></td>
           <td></td>
-          <td><input type="submit" name="find" value="Найти"></td>
+          <td><input class="btn" type="submit" name="find" value="Найти"></td>
         </tr>
       </table>
     </form>
 
-    <form action="{{ route('contacts.index') }}" method="POST">
-      {{ csrf_field() }}
-
-      <table>
+    <table>
+      <tr>
+        <th colspan="8">Вывод списка контактов</th>
+      </tr>
+      @foreach ($contacts as $contact)
         <tr>
-          <th colspan="8">Вывод списка контактов</th>
+          <td>{{ $loop->iteration }}</td>
+          <td>{{ $contact->last_name }}</td>
+          <td>{{ $contact->first_name }}</td>
+          <td>{{ $contact->patronymic_name }}</td>
+          <td>{{ $contact->phone_number }}</td>
+          <td>{{ $contact->created_at }}</td>
+          <td>{{ $contact->updated_at }}</td>
+          <td>
+            <a class="btn" href='{{ route('contacts.edit', ['id' => $contact->id]) }}'>Изменить</a>
+            <form class="br" action="{{ route('contacts.destroy', ['id' => $contact->id]) }}" method="POST">
+              {{ csrf_field() }}
+              {{ method_field('DELETE') }}
+              <input class="btn" type="submit" name="delete" value="Удалить">
+            </form>
+          </td>
         </tr>
-
-        @foreach ($contacts as $contact)
-          <tr>
-            <td>{{ $loop->iteration }}</td>
-            <td>{{ $contact->last_name }}</td>
-            <td>{{ $contact->first_name }}</td>
-            <td>{{ $contact->patronymic_name }}</td>
-            <td>{{ $contact->phone_number }}</td>
-            <td>{{ $contact->created_at }}</td>
-            <td>{{ $contact->updated_at }}</td>
-            <td>
-              <a href='{{ route('contacts.edit', ['id' => $contact->id]) }}'>Изменить</a>
-              <a href='{{ route('deleteContact', ['id' => $contact->id]) }}'>Удалить</a>
-            </td>
-          </tr>
-        @endforeach
-      </table>
-    </form>
-
+      @endforeach
+    </table>
 
     @if (!empty($editContactID))
       <form action="{{ route('contacts.update', ['id' => $editContactID]) }}" method="POST">
@@ -85,7 +84,7 @@
                 <td>{{ $contact->updated_at }}</td>
                 <td>
                   <input type="hidden" name="editContactID" value="{{ $contact->id }}">
-                  <input type="submit" name="save" value="Сохранить">
+                  <input class="btn" type="submit" name="save" value="Сохранить">
                 </td>
               @endif
             @endforeach
@@ -108,7 +107,7 @@
             <td><input type="tel" name="phone_number" value="" placeholder="74950000000"></td>
             <td></td>
             <td></td>
-            <td><input type="submit" name="add" value="Добавить контакт"/></td>
+            <td><input class="btn" type="submit" name="add" value="Добавить контакт"/></td>
           </tr>
         </table>
       </form>

@@ -135,7 +135,7 @@ class ContactsController extends Controller
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function delete(Request $request, $id)
+    public function destroy(Request $request, $id)
     {
         $result = Contact::destroy([$id]);
         return view($this->view, array(

@@ -42,12 +42,6 @@ header p {
   margin: 0;
 }
 
-.greet {
-  font-size: 24px;
-  text-align: left;
-  padding-left: 10px;
-}
-
 .logout {
   position: absolute;
   top: 0;
@@ -103,13 +97,13 @@ header p {
 }
 
 .btn {
-  min-width: 200px;
-  padding: 10px 16px;
+  font-family: sans-serif;
+  width: auto;
   font-size: 14px;
-  border: 1px solid transparent;
-  border-radius: 6px;
+  background: #ffe0e0;
+  text-decoration: none;
+  border: 1px solid black;
   color: black;
-  background-color: #BBBBBB;
   cursor: pointer;
 }
 
@@ -139,4 +133,8 @@ th:not(:first-child) {
 
 table {
   margin: 20px auto;
+}
+
+.br {
+  display: inline-block;
 }

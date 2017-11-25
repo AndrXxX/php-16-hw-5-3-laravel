@@ -12,6 +12,4 @@
 */
 
 Route::redirect('/', 'contacts', 301);
-
-Route::get('contacts/{id}/delete', 'ContactsController@delete')->name('deleteContact');
 Route::resource('contacts', 'ContactsController');
