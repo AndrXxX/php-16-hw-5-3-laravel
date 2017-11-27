@@ -138,3 +138,9 @@ table {
 .br {
   display: inline-block;
 }
+
+.errors {
+  text-align: justify;
+  font-weight: bold;
+  color: red;
+}
